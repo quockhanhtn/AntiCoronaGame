@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B18C2E22-8BBE-4CC2-A91B-5153AED26EA0}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>AntiCoronaGame</RootNamespace>
+    <AssemblyName>AntiCoronaGame</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="fGamePlay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fGamePlay.Designer.cs">
+      <DependentUpon>fGamePlay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fIntro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fIntro.Designer.cs">
+      <DependentUpon>fIntro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fMain.Designer.cs">
+      <DependentUpon>fMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fMainScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fMainScreen.Designer.cs">
+      <DependentUpon>fMainScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoadingGame.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="fGamePlay.resx">
+      <DependentUpon>fGamePlay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fIntro.resx">
+      <DependentUpon>fIntro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fMainScreen.resx">
+      <DependentUpon>fMainScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AntiCoronaGame.UserControls\AntiCoronaGame.UserControls.csproj">
+      <Project>{5b34e4f5-5f8d-4898-a81f-0cc699192e79}</Project>
+      <Name>AntiCoronaGame.UserControls</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pause.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home-variant.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\play.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\audio.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\burst.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bullet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnAbout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnHome.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnOK.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnPlay.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnQuit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnReplay.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnResume.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GAME.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\circleblue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rocketred.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\corona_0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\corona_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\corona_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\corona_3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\corona_4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\corona_5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\intro.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cô vy siêu quậy - YouTube_7.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\intro_audio.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\text.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\intro2.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cô vy siêu quậy - YouTube_7.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cough_sound.wav" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
