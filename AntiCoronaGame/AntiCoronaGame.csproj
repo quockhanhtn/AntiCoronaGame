@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -46,23 +47,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="fAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fAbout.Designer.cs">
+      <DependentUpon>fAbout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fGameOver.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fGameOver.Designer.cs">
+      <DependentUpon>fGameOver.cs</DependentUpon>
+    </Compile>
     <Compile Include="fGamePlay.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="fGamePlay.Designer.cs">
       <DependentUpon>fGamePlay.cs</DependentUpon>
     </Compile>
+    <Compile Include="fHowTo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fHowTo.Designer.cs">
+      <DependentUpon>fHowTo.cs</DependentUpon>
+    </Compile>
     <Compile Include="fIntro.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="fIntro.Designer.cs">
       <DependentUpon>fIntro.cs</DependentUpon>
-    </Compile>
-    <Compile Include="fMain.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="fMain.Designer.cs">
-      <DependentUpon>fMain.cs</DependentUpon>
     </Compile>
     <Compile Include="fMainScreen.cs">
       <SubType>Form</SubType>
@@ -73,8 +86,17 @@
     <Compile Include="LoadingGame.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="fAbout.resx">
+      <DependentUpon>fAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fGameOver.resx">
+      <DependentUpon>fGameOver.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="fGamePlay.resx">
       <DependentUpon>fGamePlay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fHowTo.resx">
+      <DependentUpon>fHowTo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="fIntro.resx">
       <DependentUpon>fIntro.cs</DependentUpon>
@@ -130,31 +152,7 @@
     <None Include="Resources\burst.wav" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\bullet.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\background.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\btnAbout.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\btnHome.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\btnOK.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\btnPlay.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\btnQuit.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\btnReplay.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\btnResume.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\GAME.png" />
@@ -187,22 +185,37 @@
     <None Include="Resources\intro.gif" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Cô vy siêu quậy - YouTube_7.gif" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\intro_audio.wav" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\text.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\intro2.wav" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Cô vy siêu quậy - YouTube_7.wav" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\cough_sound.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\github.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gmail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\web.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\help-circle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\information.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\game_over.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\replay.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\game_over.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

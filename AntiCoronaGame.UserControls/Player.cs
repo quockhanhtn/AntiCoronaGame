@@ -24,23 +24,11 @@ namespace AntiCoronaGame.UserControls
             this.Image = Properties.Resources.player;
             this.Size = new Size(135, 75);
             this.SizeMode = PictureBoxSizeMode.Zoom;
-            this.TabIndex = 0;
             this.TabStop = false;
 
             CreatePoints();
 
-            this.Paint += Player_Paint;
-            this.LocationChanged += Player_LocationChanged;
-            this.MouseClick += Player_MouseClick;
-        }
-
-        private void Player_MouseClick(object sender, MouseEventArgs e)
-        {
-            MessageBox.Show(e.Location.ToString());
-        }
-
-        private void Player_LocationChanged(object sender, EventArgs e)
-        {
+            //this.Paint += Player_Paint;
         }
 
         private void Player_Paint(object sender, PaintEventArgs e)
@@ -58,17 +46,31 @@ namespace AntiCoronaGame.UserControls
             }
         }
 
-        public bool IsHit(PointF point)
+        public bool IsHit(Rectangle rectangle, Point dis)
         {
             bool result = false;
-            point = new PointF(point.X - this.Location.X, point.Y - this.Location.Y);
-            using (GraphicsPath path = this.GraphicsPath)
+
+            points.ForEach(p =>
             {
-                using (Pen pen = new Pen(Color.Black, 3))
+                var point = new Point(p.X + dis.Y - this.Location.X, p.Y + dis.Y - this.Location.Y);
+                using (GraphicsPath path = new GraphicsPath())
                 {
+                    path.AddRectangle(rectangle);
+                    Pen pen = new Pen(Color.Black, 3);
                     result = path.IsOutlineVisible(point, pen);
                 }
-            }
+            });
+
+            //point = new PointF(point.X - this.Location.X, point.Y - this.Location.Y);
+            //using (GraphicsPath path = this.GraphicsPath)
+      
+            
+            //{
+            //    using (Pen pen = new Pen(Color.Black, 3))
+            //    {
+            //        result = path.IsOutlineVisible(point, pen);
+            //    }
+            //}
             return result;
         }
 

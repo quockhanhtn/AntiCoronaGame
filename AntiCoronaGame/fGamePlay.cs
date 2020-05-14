@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Media;
+using System.Text;
 using System.Windows.Forms;
 
 namespace AntiCoronaGame
@@ -20,18 +22,25 @@ namespace AntiCoronaGame
         int index = 1;
         int level = 1;
         int health = 100;
-        
+
+        int bestScore = 0;
+
         SoundPlayer bulletSound = new SoundPlayer(Properties.Resources.burst);
         SoundPlayer coughSound = new SoundPlayer(Properties.Resources.cough_sound);
         Random random = new Random();
 
         public int Score
         {
-            get => score; set
+            get => score; 
+            set
             {
                 score = value;
                 Level = ((int)(value / 10));
-                lblPoint.Value = value;
+                lblScore.Value = value;
+                if (value > BestScore)
+                {
+                    BestScore = value;
+                }
             }
         }
 
@@ -45,18 +54,31 @@ namespace AntiCoronaGame
             }
         }
 
+        public int BestScore
+        {
+            get => bestScore;
+            set
+            {
+                bestScore = value;
+                lblBestScore.Value = value;
+            }
+        }
+
         public fGamePlay()
         {
             InitializeComponent();
-            this.Invalidate();  // request a delayed Repaint by the normal MessageLoop system    
-            this.Update();      // forces Repaint of invalidated area 
-            this.Refresh();
+            pnlGameInfor.Enabled = false;
+            BestScore = GetBestScore();
+            picPillar1.Location = new Point(250, random.Next(-180, -50));
+            picPillar2.Location = new Point(500, random.Next(270, 320));
+            picPillar3.Location = new Point(750, random.Next(-180, -50));
+            picPillar4.Location = new Point(0, random.Next(270, 320));
         }
 
-        #region Methods
         public void StartGame()
         {
-            btnPause.PerformClick();
+            pnlGameInfor.Enabled = true;
+            tmrGameUpdate.Start();
         }
 
         public void MovePillar()
@@ -67,18 +89,22 @@ namespace AntiCoronaGame
             picPillar4.Left -= speed;
             if (picPillar1.Left <= -100)
             {
+                picPillar1.Location = new Point(750, random.Next(-180, -50));
                 picPillar1.Left = 900;
             }
             if (picPillar2.Left <= -100)
             {
+                picPillar2.Location = new Point(500, random.Next(270, 320));
                 picPillar2.Left = 900;
             }
             if (picPillar3.Left <= -100)
             {
+                picPillar3.Location = new Point(750, random.Next(-180, -50));
                 picPillar3.Left = 900;
             }
             if (picPillar4.Left <= -100)
             {
+                picPillar4.Location = new Point(500, random.Next(270, 320));
                 picPillar4.Left = 900;
             }
         }
@@ -109,17 +135,17 @@ namespace AntiCoronaGame
         }
         public void MoveCorona()
         {
-            pBUfo1.Left -= speed;
-            pBUfo2.Left -= speed;
-            if (pBUfo1.Left < -100)
+            picVirus2.Left -= speed;
+            picVirus1.Left -= speed;
+            if (picVirus2.Left < -100)
             {
-                pBUfo1.Left = 900;
-                pBUfo1.Top = random.Next(100, 330) - pBUfo1.Height;
+                picVirus2.Left = 900;
+                picVirus2.Top = random.Next(100, 330) - picVirus2.Height;
             }
-            if (pBUfo2.Left < -100)
+            if (picVirus1.Left < -100)
             {
-                pBUfo2.Left = 900;
-                pBUfo2.Top = random.Next(100, 330) - pBUfo1.Height;
+                picVirus1.Left = 900;
+                picVirus1.Top = random.Next(100, 330) - picVirus2.Height;
             }
 
         }
@@ -142,23 +168,25 @@ namespace AntiCoronaGame
                         pnlGamePlay.Controls.Remove(item);
                         item.Dispose();
                     }
+
                     // nếu bắn trúng
-                    if (item.Bounds.IntersectsWith(pBUfo1.Bounds))
+                    if (item.Bounds.IntersectsWith(picVirus2.Bounds))
                     {
                         Score += 1;
                         pnlGamePlay.Controls.Remove(item);
                         item.Dispose();
-                        pBUfo1.Left = 1000;
-                        pBUfo1.Top = random.Next(100, 330) - pBUfo1.Height;
+                        picVirus2.Left = 1000;
+                        picVirus2.Top = random.Next(100, 330) - picVirus2.Height;
                         ChangeCorona();
                     }
-                    if (item.Bounds.IntersectsWith(pBUfo2.Bounds))
+
+                    if (item.Bounds.IntersectsWith(picVirus1.Bounds))
                     {
                         Score += 1;
                         pnlGamePlay.Controls.Remove(item);
                         item.Dispose();
-                        pBUfo2.Left = 1000;
-                        pBUfo2.Top = random.Next(100, 330) - pBUfo1.Height;
+                        picVirus1.Left = 1000;
+                        picVirus1.Top = random.Next(100, 330) - picVirus2.Height;
                         ChangeCorona();
                     }
                 }
@@ -173,72 +201,88 @@ namespace AntiCoronaGame
             {
                 case 1:
                     {
-                        pBUfo1.Image = Properties.Resources.corona_0;
-                        pBUfo2.Image = Properties.Resources.corona_1;
+                        picVirus2.Image = Properties.Resources.corona_0;
+                        picVirus1.Image = Properties.Resources.corona_1;
                         break;
                     }
                 case 2:
                     {
-                        pBUfo1.Image = Properties.Resources.corona_3;
-                        pBUfo2.Image = Properties.Resources.corona_4;
+                        picVirus2.Image = Properties.Resources.corona_3;
+                        picVirus1.Image = Properties.Resources.corona_4;
                         break;
                     }
                 case 3:
                     {
-                        pBUfo1.Image = Properties.Resources.corona_5;
-                        pBUfo2.Image = Properties.Resources.corona_0;
+                        picVirus2.Image = Properties.Resources.corona_5;
+                        picVirus1.Image = Properties.Resources.corona_0;
                         break;
                     }
             }
         }
         public void GameOver()
         {
-            if (picPlayer.IsHit(new Point(picPillar1.Location.X, picPillar1.Location.Y + picPillar1.Height))
-                || picPlayer.IsHit(picPillar2.Location)
-                || picPlayer.IsHit(new Point(picPillar3.Location.X, picPillar3.Location.Y + picPillar3.Height))
-                || picPlayer.IsHit(picPillar4.Location))
+            //if (picPlayer.IsHit(picPillar1.Bounds, picPillar1.Location)) 
+            //{
+            //    //health = 0;
+            //    //healthBar.HealthPercent = 0;
+            //    lblBestScore.Text = "1";
+            //}
+            //if (picPlayer.IsHit(picPillar2.Bounds, picPillar2.Location))
+            //{
+            //    //health = 0;
+            //    //healthBar.HealthPercent = 0;
+            //    lblBestScore.Text = "2";
+            //}
+            //if (picPlayer.IsHit(picPillar3.Bounds, picPillar3.Location))
+            //{
+            //    //health = 0;
+            //    //healthBar.HealthPercent = 0;
+            //    lblBestScore.Text = "3";
+            //}
+            //if (picPlayer.IsHit(picPillar4.Bounds, picPillar4.Location))
+            //{
+            //    //health = 0;
+            //    //healthBar.HealthPercent = 0;
+            //    lblBestScore.Text = "4";
+            //}
+
+            if (picPlayer.Bounds.IntersectsWith(picPillar1.Bounds)
+                || picPlayer.Bounds.IntersectsWith(picPillar2.Bounds)
+                || picPlayer.Bounds.IntersectsWith(picPillar3.Bounds)
+                || picPlayer.Bounds.IntersectsWith(picPillar4.Bounds))
             {
                 health = 0;
                 healthBar.HealthPercent = 0;
             }
-
-            //if (picPlayer.Bounds.IntersectsWith(picPillar1.Bounds)
-            //    || picPlayer.Bounds.IntersectsWith(picPillar2.Bounds)
-            //    || picPlayer.Bounds.IntersectsWith(picPillar3.Bounds))
-            //{
-            //    health = 0;
-            //    healthBar.HealthPercent = 0;
-            //}
-            if (picPlayer.Bounds.IntersectsWith(pBUfo1.Bounds))
+            if (picPlayer.Bounds.IntersectsWith(picVirus2.Bounds))
             {
                 health = health - 10;
                 healthBar.HealthPercent -= 10;
-                pBUfo1.Left = 1000;
+                picVirus2.Left = 1000;
                 coughSound.Play();
             }
-            if (picPlayer.Bounds.IntersectsWith(pBUfo2.Bounds))
+            if (picPlayer.Bounds.IntersectsWith(picVirus1.Bounds))
             {
                 health = health - 10;
                 healthBar.HealthPercent -= 10;
-                pBUfo2.Left = 1000;
+                picVirus1.Left = 1000;
                 coughSound.Play();
             }
 
             if (health == 0)
             {
                 tmrGameUpdate.Stop();
-                //pBUfo1.Hide();
-                //pBUfo2.Hide();
-                //picPillar1.Hide();
-                //picPillar2.Hide();
-                //picPillar3.Hide();
-                //picPlayer.Hide();
-                //lbgameover.Show();
-                if (MessageBox.Show("Bạn đã được: " + Score + " điểm.\nBạn có muốn chơi tiếp", "Điểm số:", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                SetBestScore();
+                fGameOver formGameOver = new fGameOver();
+                formGameOver.SetScores(Score, BestScore);
+                switch (formGameOver.ShowDialog(this))
                 {
-                    this.Close();
-                    fGamePlay fGamePlay = new fGamePlay();
-                    fGamePlay.ShowDialog();
+                    case DialogResult.OK:       //Replay
+                        btnReplay.PerformClick();
+                        break;
+                    case DialogResult.Cancel:   //Home
+                        this.Close();
+                        break;
                 }
             }
         }
@@ -285,15 +329,11 @@ namespace AntiCoronaGame
                     break;
             }
         }
-        #endregion
-        #region Events
-
+        
         private void fGamePlay_Load(object sender, EventArgs e)
         {
             tmrGameUpdate.Stop();
-            //lbgameover.Hide();
             picPlayer.Focus();
-            //tmrGameUpdate.Start();
         }
 
         private void fGamePlay_KeyDown(object sender, KeyEventArgs e)
@@ -332,14 +372,6 @@ namespace AntiCoronaGame
                 shot = false;
         }
 
-        private void pBHome_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            fMain fMain = new fMain();
-            fMain.Show();
-        }
-        #endregion
-
         private void tmrGameUpdate_Tick(object sender, EventArgs e)
         {
             MovePillar();
@@ -369,6 +401,52 @@ namespace AntiCoronaGame
             using (Image background = new Bitmap(Properties.Resources.background, new Size(1260, 415)))
             {
                 e.Graphics.DrawImageUnscaled(background, new Point(pnlGamePlay.Location.X, pnlGamePlay.Location.Y));
+            }
+        }
+
+        private void fGamePlay_Shown(object sender, EventArgs e)
+        {
+            CountDownLabel countDown = new CountDownLabel(3);
+            pnlGamePlay.Controls.Add(countDown);
+            countDown.StartCountDown(StartGame);
+        }
+
+        private void btnHome_Click(object sender, EventArgs e)
+        {
+            Program.FormMainScreen.Show();
+            this.Close();
+        }
+
+        private void btnReplay_Click(object sender, EventArgs e)
+        {
+            fGamePlay formGamePlay = new fGamePlay();
+            formGamePlay.StartPosition = FormStartPosition.CenterScreen;
+            formGamePlay.Show();
+            this.Close();
+        }
+
+        int GetBestScore()
+        {
+            int result = 0;
+            string fileName = @"gameSave.config";
+            if (File.Exists(fileName))
+            {
+                using (StreamReader sr = File.OpenText(fileName))
+                {
+                    int.TryParse(sr.ReadLine(), out result);
+                }
+            }
+            return result;
+        }
+
+        void SetBestScore()
+        {
+            string fileName = @"gameSave.config";
+            if (File.Exists(fileName)) { File.Delete(fileName); }
+            using (FileStream fs = File.Create(fileName))
+            { 
+                Byte[] text = new UTF8Encoding(true).GetBytes(BestScore.ToString());
+                fs.Write(text, 0, text.Length);
             }
         }
     }

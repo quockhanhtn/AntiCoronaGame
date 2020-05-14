@@ -16,7 +16,9 @@ namespace AntiCoronaGame
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new fMainScreen());
+            FormMainScreen = new fMainScreen();
+            Application.Run(FormMainScreen);
         }
+        public static fMainScreen FormMainScreen;
     }
 }

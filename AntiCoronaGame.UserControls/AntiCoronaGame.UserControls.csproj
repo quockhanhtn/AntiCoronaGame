@@ -49,6 +49,9 @@
     <Compile Include="CoronaVirus.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="CountDownLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="DoubleBufferedPanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -119,6 +122,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\player.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\go.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\one.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\three.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\two.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

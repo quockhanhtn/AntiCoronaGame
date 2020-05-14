@@ -36,6 +36,7 @@
             this.pnlButton = new System.Windows.Forms.Panel();
             this.btnQuit = new AntiCoronaGame.UserControls.FlatButton();
             this.btnIntro = new AntiCoronaGame.UserControls.FlatButton();
+            this.btnHowTo = new AntiCoronaGame.UserControls.FlatButton();
             this.btnAbout = new AntiCoronaGame.UserControls.FlatButton();
             this.btnPlay = new AntiCoronaGame.UserControls.FlatButton();
             this.picIntro = new System.Windows.Forms.PictureBox();
@@ -87,7 +88,7 @@
             this.titleBar1.TitleFont = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.titleBar1.TitleForeColor = System.Drawing.Color.White;
             this.titleBar1.TitleIcon = null;
-            this.titleBar1.TitleText = "Anti Corona";
+            this.titleBar1.TitleText = "";
             // 
             // pnlBoderRight
             // 
@@ -126,6 +127,7 @@
             // 
             this.pnlButton.Controls.Add(this.btnQuit);
             this.pnlButton.Controls.Add(this.btnIntro);
+            this.pnlButton.Controls.Add(this.btnHowTo);
             this.pnlButton.Controls.Add(this.btnAbout);
             this.pnlButton.Controls.Add(this.btnPlay);
             this.pnlButton.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -142,7 +144,7 @@
             this.btnQuit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnQuit.Font = new System.Drawing.Font("Segoe UI Semibold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnQuit.ForeColor = System.Drawing.Color.White;
-            this.btnQuit.Location = new System.Drawing.Point(543, 52);
+            this.btnQuit.Location = new System.Drawing.Point(578, 52);
             this.btnQuit.Name = "btnQuit";
             this.btnQuit.Size = new System.Drawing.Size(135, 42);
             this.btnQuit.TabIndex = 1;
@@ -168,7 +170,7 @@
             this.btnIntro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIntro.Font = new System.Drawing.Font("Segoe UI Semibold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIntro.ForeColor = System.Drawing.Color.White;
-            this.btnIntro.Location = new System.Drawing.Point(213, 53);
+            this.btnIntro.Location = new System.Drawing.Point(149, 53);
             this.btnIntro.Name = "btnIntro";
             this.btnIntro.Size = new System.Drawing.Size(135, 42);
             this.btnIntro.TabIndex = 1;
@@ -187,6 +189,32 @@
             this.btnIntro.UseVisualStyleBackColor = false;
             this.btnIntro.Click += new System.EventHandler(this.btnIntro_Click);
             // 
+            // btnHowTo
+            // 
+            this.btnHowTo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnHowTo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnHowTo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHowTo.Font = new System.Drawing.Font("Segoe UI Semibold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHowTo.ForeColor = System.Drawing.Color.White;
+            this.btnHowTo.Location = new System.Drawing.Point(292, 52);
+            this.btnHowTo.Name = "btnHowTo";
+            this.btnHowTo.Size = new System.Drawing.Size(135, 42);
+            this.btnHowTo.TabIndex = 1;
+            this.btnHowTo.Text = "HOW TO";
+            this.btnHowTo.ToolTipActive = true;
+            this.btnHowTo.ToolTipAutomaticDelay = 500;
+            this.btnHowTo.ToolTipAutoPopDelay = 5000;
+            this.btnHowTo.ToolTipBackColor = System.Drawing.SystemColors.Info;
+            this.btnHowTo.ToolTipCaption = "";
+            this.btnHowTo.ToolTipForeColor = System.Drawing.SystemColors.InfoText;
+            this.btnHowTo.ToolTipInitialDelay = 200;
+            this.btnHowTo.ToolTipIsBalloon = false;
+            this.btnHowTo.ToolTipReshowDelay = 100;
+            this.btnHowTo.ToolTipShowAlways = true;
+            this.btnHowTo.ToolTipTitle = "";
+            this.btnHowTo.UseVisualStyleBackColor = false;
+            this.btnHowTo.Click += new System.EventHandler(this.btnHowTo_Click);
+            // 
             // btnAbout
             // 
             this.btnAbout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
@@ -194,7 +222,7 @@
             this.btnAbout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAbout.Font = new System.Drawing.Font("Segoe UI Semibold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAbout.ForeColor = System.Drawing.Color.White;
-            this.btnAbout.Location = new System.Drawing.Point(378, 52);
+            this.btnAbout.Location = new System.Drawing.Point(435, 52);
             this.btnAbout.Name = "btnAbout";
             this.btnAbout.Size = new System.Drawing.Size(135, 42);
             this.btnAbout.TabIndex = 1;
@@ -220,7 +248,7 @@
             this.btnPlay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPlay.Font = new System.Drawing.Font("Segoe UI Semibold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPlay.ForeColor = System.Drawing.Color.White;
-            this.btnPlay.Location = new System.Drawing.Point(48, 53);
+            this.btnPlay.Location = new System.Drawing.Point(6, 53);
             this.btnPlay.Name = "btnPlay";
             this.btnPlay.Size = new System.Drawing.Size(135, 42);
             this.btnPlay.TabIndex = 1;
@@ -285,7 +313,6 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private UserControls.TitleBar titleBar1;
         private System.Windows.Forms.Panel pnlBoderRight;
         private System.Windows.Forms.Panel pnlBoderLeft;
         private System.Windows.Forms.Panel pnlBoderBottom;
@@ -296,5 +323,7 @@
         private UserControls.FlatButton btnQuit;
         private UserControls.FlatButton btnAbout;
         private UserControls.FlatButton btnIntro;
+        private UserControls.FlatButton btnHowTo;
+        private UserControls.TitleBar titleBar1;
     }
 }

@@ -1,13 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Media;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AntiCoronaGame
@@ -15,12 +7,10 @@ namespace AntiCoronaGame
     public partial class fMainScreen : Form
     {
         SoundPlayer musicIntro = new SoundPlayer(Properties.Resources.intro_audio);
-        fGamePlay formGamePlay;
 
         public fMainScreen()
         {
             InitializeComponent();
-            formGamePlay = new fGamePlay();
         }
 
         private void fMainScreen_VisibleChanged(object sender, EventArgs e)
@@ -40,23 +30,20 @@ namespace AntiCoronaGame
         private void btnPlay_Click(object sender, EventArgs e)
         {
             this.Hide();
+            var formGamePlay = new fGamePlay();
             formGamePlay.ShowDialog(this);
-            this.Show();
         }
 
-        private void btnIntro_Click(object sender, EventArgs e)
-        {
-            fIntro.Show(this);
-        }
+        private void btnIntro_Click(object sender, EventArgs e) { fIntro.Show(this); }
 
-        private void btnAbout_Click(object sender, EventArgs e)
-        {
+        private void btnHowTo_Click(object sender, EventArgs e) {  fHowTo.Show(this); }
 
-        }
+        private void btnAbout_Click(object sender, EventArgs e) { fAbout.Show(this); }
 
         private void btnQuit_Click(object sender, EventArgs e)
         {
-
+            DialogResult dialogResult = MessageBox.Show("Bạn có muốn thoát trò chơi :(", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+            if (dialogResult == DialogResult.Yes) { this.Close(); }
         }
     }
 }

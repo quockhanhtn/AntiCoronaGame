@@ -34,7 +34,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(902, 453);
+            this.ClientSize = new System.Drawing.Size(871, 453);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "fIntro";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
